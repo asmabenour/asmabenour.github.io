@@ -1,0 +1,825 @@
+import React, { useState, useEffect } from 'react';
+import { Github, Linkedin, Mail, Phone, MapPin, Download, ExternalLink, Award, Code, Briefcase, GraduationCap, X, Send } from 'lucide-react';
+
+const Portfolio = () => {
+  const [activeSection, setActiveSection] = useState('home');
+  const [selectedCert, setSelectedCert] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const certifications = [
+    {
+      title: "Leadership & Communication",
+      description: "Certificat vérifié",
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop"
+    },
+    {
+      title: "Gamification",
+      description: "Certificat vérifié",
+      image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&h=600&fit=crop"
+    },
+    {
+      title: "Time and Project Management",
+      description: "Certificat vérifié",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop"
+    },
+    {
+      title: "Remerciement 2023",
+      description: "Certificat vérifié",
+      image: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=800&h=600&fit=crop"
+    },
+    {
+      title: "Remerciement 2024",
+      description: "Certificat vérifié",
+      image: "https://images.unsplash.com/photo-1589395937772-9c1e0d0b4fff?w=800&h=600&fit=crop"
+    },
+    {
+      title: "Digital Content Lab",
+      description: "Certificat vérifié",
+      image: "https://images.unsplash.com/photo-1432888622747-4eb9a8f2c293?w=800&h=600&fit=crop"
+    },
+    {
+      title: "1er Prix BDP",
+      description: "Bal des Projets - 12ème édition, ESPRIT 2025",
+      image: "https://images.unsplash.com/photo-1624969862293-b749659ccc4e?w=800&h=600&fit=crop"
+    },
+    {
+      title: "Attendance Hashgraph Developer",
+      description: "Certificat Hedera",
+      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop"
+    },
+    {
+      title: "Applications of AI for Anomaly Detection",
+      description: "Certificat NVIDIA",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop"
+    }
+  ];
+
+  const projects = [
+    {
+      title: "Site Web de Prise de Rendez-vous",
+      badge: "1er Prix - Bal des Projets ESPRIT 2025",
+      description: "Esprit School of Business nécessitait une solution digitale moderne pour faciliter la prise de rendez-vous entre étudiants et professionnels de santé, remplaçant un processus manuel inefficace et source d'erreurs.",
+      role: "Développeur Full-Stack au sein d'une équipe projet. J'ai contribué à la conception de l'architecture, développé le système d'authentification multi-rôles et implémenté les fonctionnalités de calendrier dynamique.",
+      technologies: ["PHP", "MySQL", "JavaScript", "HTML/CSS", "Full-Stack"],
+      features: [
+        "Système de gestion multi-rôles (Étudiants, Médecins, Administrateurs)",
+        "Authentification sécurisée avec gestion des sessions",
+        "Calendrier dynamique interactif pour la planification",
+        "Système de notifications en temps réel",
+        "Interface responsive et intuitive"
+      ],
+      results: [
+        { label: "1er Prix", desc: "au Bal des Projets - 12ème édition, ESPRIT 2025" },
+        { label: "100%", desc: "digitalisation du processus de prise de rendez-vous" },
+        { label: "3 rôles", desc: "utilisateurs gérés avec permissions différenciées" },
+        { label: "Optimisation", desc: "de l'organisation des consultations médicales" }
+      ],
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop"
+    },
+    {
+      title: "AIxCYBER2025 - Assistant IA FinTech",
+      badge: "Innovation IA & Cybersécurité",
+      description: "Dans un contexte de transformation digitale du secteur financier, développement d'un prototype d'assistant intelligent combinant IA, blockchain et cybersécurité pour la gestion sécurisée de patrimoine multi-actifs.",
+      role: "Développeur IA & Blockchain. Conception et développement du prototype, intégration des solutions FinTech, implémentation des protocoles de sécurité et de la traçabilité blockchain.",
+      technologies: ["Intelligence Artificielle", "Blockchain", "FinTech", "Cybersécurité", "Python"],
+      features: [
+        "Assistant IA pour recommandations personnalisées de gestion de patrimoine",
+        "Intégration de solutions FinTech modernes",
+        "Protocoles de cybersécurité avancés pour la protection des données",
+        "Blockchain pour traçabilité et immuabilité des transactions",
+        "Architecture sécurisée multi-couches"
+      ],
+      results: [
+        { label: "Multi-actifs", desc: "Gestion diversifiée du patrimoine" },
+        { label: "Sécurité", desc: "Protocoles de cybersécurité de niveau bancaire" },
+        { label: "Traçabilité", desc: "Blockchain pour transactions immuables" },
+        { label: "Innovation", desc: "Fusion IA, FinTech et Cybersécurité" }
+      ],
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop"
+    }
+  ];
+
+  const skills = {
+    "Langages de Programmation": [
+      { name: "Python", verified: true },
+      { name: "Java", verified: true },
+      { name: "C#", verified: true },
+      { name: "JavaScript", verified: true },
+      { name: "PHP", verified: true },
+      { name: "HTML", verified: true },
+      { name: "CSS", verified: true }
+    ],
+    "Frameworks & Technologies": [
+      { name: "Spring Boot", verified: true },
+      { name: "Angular", verified: true },
+      { name: "Android Studio", verified: true }
+    ],
+    "Intelligence Artificielle": [
+      { name: "Certifié NVIDIA", verified: true, badge: true },
+      { name: "Détection d'anomalies", verified: true },
+      { name: "Apprentissage supervisé", verified: true }
+    ],
+    "Blockchain & DLT": [
+      { name: "Certifié Hedera", verified: true, badge: true },
+      { name: "Développement DApps", verified: true },
+      { name: "Consensus distribué", verified: true }
+    ],
+    "Bases de Données": [
+      { name: "MySQL", verified: true },
+      { name: "phpMyAdmin", verified: true }
+    ],
+    "Outils": [
+      { name: "Power BI", verified: false },
+      { name: "Linux (Ubuntu)", verified: false }
+    ]
+  };
+
+  const experiences = [
+    {
+      title: "Stage d'été - Département Informatique",
+      company: "BNA (Banque Nationale Agricole)",
+      period: "Été 2024",
+      location: "Tunis, Tunisie",
+      description: "Contribution aux projets informatiques et analyse des systèmes bancaires. Immersion dans l'environnement technologique d'une institution financière majeure."
+    },
+    {
+      title: "Cheffe - Commission Intérêt Public",
+      company: "Rotaract Tunis Belvédère",
+      period: "2025 - Présent",
+      location: "Tunis, Tunisie",
+      description: "Leadership d'initiatives communautaires et gestion d'équipe. Coordination de projets d'impact social et développement de solutions pour les besoins de la communauté."
+    }
+  ];
+
+  const associations = [
+    {
+      title: "Junior Chamber International (JCI)",
+      role: "Commissaire aux Comptes",
+      period: "2025 - Présent",
+      description: "En tant que Commissaire aux Comptes au sein de JCI, je supervise la gestion financière de l'organisation, assure la transparence des opérations comptables et contribue à la prise de décisions stratégiques basées sur l'analyse financière. Cette expérience développe mes compétences en leadership, gestion budgétaire et gouvernance associative.",
+      tags: ["Gestion Financière", "Leadership", "Gouvernance", "Analyse Budgétaire"],
+      icon: "💼"
+    },
+    {
+      title: "Enactus ESB",
+      role: "Membre Actif",
+      period: "2023 - 2024",
+      description: "Participation active dans Enactus ESB, une organisation étudiante internationale qui utilise l'entrepreneuriat social pour créer un impact positif dans la communauté. Contribution à des projets innovants combinant business, développement durable et responsabilité sociale.",
+      tags: ["Entrepreneuriat Social", "Travail d'Équipe", "Innovation", "Impact Social"],
+      icon: "🤝"
+    },
+    {
+      title: "Club Radio ISBST",
+      role: "Responsable Marketing",
+      period: "2022 - 2023",
+      description: "En tant que Responsable Marketing du Club Radio ISBST, j'ai développé et exécuté des stratégies de communication pour promouvoir les émissions et événements du club. Gestion des réseaux sociaux, création de contenu visuel, et coordination des campagnes marketing pour accroître l'engagement de l'audience étudiante.",
+      tags: ["Marketing Digital", "Communication", "Créativité", "Social Media"],
+      icon: "📻"
+    },
+    {
+      title: "Leo Club Tunis Armada",
+      role: "Membre Actif",
+      period: "2022 - 2023",
+      description: "Membre du Leo Club Tunis Armada, organisation de service communautaire pour jeunes leaders. Participation à des projets de volontariat, actions caritatives et initiatives de développement communautaire. Cette expérience a renforcé mon sens de la responsabilité sociale et mes compétences en organisation d'événements.",
+      tags: ["Bénévolat", "Service Communautaire", "Organisation", "Valeurs Humanitaires"],
+      icon: "🦁"
+    }
+  ];
+
+  const Modal = ({ children, onClose }) => (
+    <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4" onClick={onClose}>
+      <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto relative shadow-2xl" onClick={e => e.stopPropagation()}>
+        <button onClick={onClose} className="sticky top-4 float-right mr-4 p-2 bg-amber-900 text-amber-50 rounded-full hover:bg-amber-800 transition-colors z-10">
+          <X size={24} />
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-stone-100 via-amber-50 to-yellow-50">
+      {/* Navigation */}
+      <nav className={`fixed top-0 w-full z-40 transition-all duration-300 ${scrolled ? 'bg-gradient-to-r from-amber-900 to-yellow-800 shadow-lg' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="text-2xl font-bold text-amber-50">Asma Bennour</div>
+            <div className="hidden md:flex space-x-6">
+              {['Accueil', 'À Propos', 'Compétences', 'Projets', 'Formation', 'Contact'].map(section => (
+                <button
+                  key={section}
+                  className="text-sm font-medium text-amber-50 hover:text-yellow-200 transition-colors"
+                >
+                  {section}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="min-h-screen flex items-center justify-center pt-16 px-4">
+        <div className="max-w-6xl w-full text-center">
+          <div className="mb-8">
+            <span className="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium">QUI JE SUIS</span>
+          </div>
+          <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-6">Profil</h1>
+          
+          <div className="grid md:grid-cols-3 gap-8 mt-16">
+            <div className="md:col-span-1 flex justify-center">
+              <div className="w-64 h-64 rounded-full overflow-hidden border-4 border-amber-900 shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=600&fit=crop" alt="Asma Bennour" className="w-full h-full object-cover" />
+              </div>
+            </div>
+            
+            <div className="md:col-span-2 text-left space-y-6">
+              <div>
+                <h2 className="text-4xl font-bold text-blue-700 mb-2">Asma Bennour</h2>
+                <p className="text-xl text-gray-700 mb-4">Étudiante en Business Computing</p>
+                <p className="flex items-center text-gray-600">
+                  <MapPin size={20} className="mr-2" />
+                  La Manouba, Tunis
+                </p>
+              </div>
+              
+              <div className="bg-white bg-opacity-60 backdrop-blur-sm p-6 rounded-xl border-l-4 border-blue-600">
+                <p className="text-lg text-gray-700 italic leading-relaxed">
+                  "Le numérique est pour moi un formidable terrain d'innovation et d'engagement. Étudiante en Business Computing, je m'investis dans des initiatives en lien avec les Objectifs de Développement Durable afin de concevoir des solutions digitales à la fois innovantes, utiles et porteuses de sens."
+                </p>
+              </div>
+              
+              <div className="bg-white bg-opacity-60 backdrop-blur-sm p-6 rounded-xl">
+                <p className="text-gray-700 leading-relaxed">
+                  Je cherche un stage de fin d'études où je pourrai allier <span className="text-blue-600 font-semibold">analyse, innovation</span> et <span className="text-blue-600 font-semibold">esprit d'équipe</span> afin de transformer les besoins métiers en résultats tangibles.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2 text-sm text-green-700 bg-green-50 px-4 py-2 rounded-full w-fit">
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                Disponible pour un stage
+              </div>
+            </div>
+          </div>
+
+          {/* Values Cards */}
+          <div className="grid md:grid-cols-4 gap-6 mt-16">
+            {[
+              { icon: "💡", title: "Curiosité", desc: "Passionné par l'apprentissage continu et l'exploration de nouvelles technologies" },
+              { icon: "🏆", title: "Orienté Défis", desc: "Stimulé par les challenges techniques et la résolution de problèmes complexes" },
+              { icon: "🚀", title: "Impact Concret", desc: "Focus sur la création de solutions qui génèrent des résultats mesurables" },
+              { icon: "👥", title: "Esprit d'Équipe", desc: "Collaboration efficace et communication transparente au sein des équipes" }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white bg-opacity-80 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1">
+                <div className="text-4xl mb-4">{item.icon}</div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-sm text-gray-600">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Academic Path */}
+      <section className="py-20 px-4 bg-gradient-to-r from-stone-100 to-amber-100">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center gap-3 mb-12">
+            <GraduationCap size={40} className="text-blue-600" />
+            <h2 className="text-4xl font-bold text-gray-900">Parcours Académique</h2>
+          </div>
+          
+          <div className="relative">
+            <div className="absolute left-8 top-0 bottom-0 w-1 bg-blue-600"></div>
+            
+            <div className="space-y-12">
+              <div className="flex gap-6">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">2023</div>
+                  <div className="text-sm text-gray-600 mt-2">2026</div>
+                </div>
+                <div className="flex-1 bg-white bg-opacity-80 backdrop-blur-sm p-8 rounded-xl shadow-lg border-l-4 border-blue-600">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Licence en Business Computing</h3>
+                  <p className="text-blue-600 font-semibold mb-4 flex items-center gap-2">
+                    <GraduationCap size={20} />
+                    Esprit School of Business, Tunisie
+                  </p>
+                  <div className="mb-4">
+                    <span className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm">Spécialité: Business Information Systems</span>
+                  </div>
+                  <ul className="space-y-2 text-gray-700">
+                    <li>• Gestion de Bases de Données, Analyse de Données</li>
+                    <li>• Développement Web Full-Stack, Intelligence Artificielle</li>
+                    <li>• Blockchain & Cybersécurité, Modélisation de Processus Métier</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="flex gap-6">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">2018</div>
+                  <div className="text-sm text-gray-600 mt-2">2022</div>
+                </div>
+                <div className="flex-1 bg-white bg-opacity-80 backdrop-blur-sm p-8 rounded-xl shadow-lg border-l-4 border-blue-600">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Baccalauréat - Sciences Expérimentales</h3>
+                  <p className="text-blue-600 font-semibold mb-4 flex items-center gap-2">
+                    <GraduationCap size={20} />
+                    Lycée Oued Ellil, Tunisie
+                  </p>
+                  <ul className="space-y-2 text-gray-700">
+                    <li>• Formation scientifique rigoureuse</li>
+                    <li>• Base solide en mathématiques et sciences</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16 text-center">
+            <button className="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors shadow-lg">
+              CE QUE J'APPORTE
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4 text-center">Compétences & Expertise</h2>
+          <p className="text-center text-gray-600 mb-12">Un ensemble de compétences complètes alliant maîtrise technique, sens des affaires et excellence interpersonnelle</p>
+
+          <div className="bg-white bg-opacity-80 backdrop-blur-sm p-8 rounded-2xl shadow-lg mb-8">
+            <div className="flex items-center gap-3 mb-6">
+              <Code size={32} className="text-blue-600" />
+              <h3 className="text-2xl font-bold text-gray-900">Compétences Techniques</h3>
+            </div>
+
+            <div className="space-y-8">
+              {Object.entries(skills).map(([category, items]) => (
+                <div key={category}>
+                  <h4 className="font-semibold text-gray-800 mb-4">{category}</h4>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {items.map((skill, idx) => (
+                      <div key={idx} className={`${skill.badge ? 'bg-gradient-to-r from-blue-600 to-blue-500' : skill.verified ? 'bg-blue-600' : 'bg-gray-400'} text-white px-4 py-2 rounded-full text-sm text-center font-medium flex items-center justify-center gap-2`}>
+                        {skill.name || skill}
+                        {skill.badge && <Award size={16} />}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white bg-opacity-80 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center">
+                <span className="text-2xl">👥</span>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900">Compétences Comportementales</h3>
+            </div>
+
+            <div className="grid md:grid-cols-4 gap-6">
+              {[
+                { icon: "👥", title: "Travail en Équipe", desc: "Collaboration efficace et synergie d'équipe" },
+                { icon: "👨‍💼", title: "Leadership", desc: "Gestion de projet et prise d'initiative" },
+                { icon: "💬", title: "Communication", desc: "Expression claire et écoute active" },
+                { icon: "🧩", title: "Résolution de Problèmes", desc: "Pensée analytique et créativité" }
+              ].map((skill, idx) => (
+                <div key={idx} className="text-center p-4 hover:bg-gray-50 rounded-xl transition-all">
+                  <div className="text-4xl mb-3">{skill.icon}</div>
+                  <h4 className="font-bold text-gray-900 mb-2">{skill.title}</h4>
+                  <p className="text-sm text-gray-600">{skill.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Languages */}
+          <div className="mt-8 bg-white bg-opacity-80 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-cyan-600 rounded-xl flex items-center justify-center text-white text-xl">🌍</div>
+              <h3 className="text-2xl font-bold text-gray-900">Langues</h3>
+            </div>
+            
+            <div className="grid md:grid-cols-4 gap-6">
+              {[
+                { code: "TN", lang: "Arabe", level: "Langue Maternelle", color: "yellow" },
+                { code: "FR", lang: "Français", level: "Courant", color: "green" },
+                { code: "GB", lang: "Anglais", level: "Courant", color: "green" },
+                { code: "ES", lang: "Espagnol", level: "Notions", color: "blue" }
+              ].map((lang, idx) => (
+                <div key={idx} className="text-center p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-all">
+                  <div className="text-4xl font-bold text-gray-700 mb-2">{lang.code}</div>
+                  <h4 className="font-bold text-gray-900">{lang.lang}</h4>
+                  <span className={`inline-block mt-2 px-3 py-1 rounded-full text-xs text-white ${
+                    lang.color === 'yellow' ? 'bg-yellow-600' : 
+                    lang.color === 'green' ? 'bg-green-600' : 
+                    'bg-blue-600'
+                  }`}>
+                    {lang.level}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section className="py-20 px-4 bg-gradient-to-r from-amber-100 to-yellow-100">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium">MON TRAVAIL</span>
+            <h2 className="text-4xl font-bold text-gray-900 mt-4 mb-4">Projets & Expériences</h2>
+            <p className="text-gray-600">Applications concrètes où j'ai traduit les défis commerciaux en solutions techniques innovantes</p>
+          </div>
+
+          <div className="space-y-8">
+            {projects.map((project, idx) => (
+              <div
+                key={idx}
+                onClick={() => setSelectedProject(project)}
+                className="bg-white bg-opacity-90 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 cursor-pointer overflow-hidden"
+              >
+                <div className="p-8">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex-1">
+                      <div className="text-3xl font-bold text-blue-600 mb-2">0{idx + 1}</div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-3">{project.title}</h3>
+                      {project.badge && (
+                        <span className="inline-block bg-yellow-600 text-white px-4 py-1 rounded-full text-sm font-medium mb-4">
+                          🏆 {project.badge}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech, i) => (
+                      <span key={i} className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm">{tech}</span>
+                    ))}
+                  </div>
+
+                  <p className="text-gray-700 mb-4">{project.description}</p>
+
+                  <div className="text-blue-600 font-medium flex items-center gap-2">
+                    <ExternalLink size={18} />
+                    Cliquez pour voir les détails
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center flex items-center justify-center gap-3">
+            <Briefcase size={40} className="text-amber-700" />
+            Expériences Professionnelles
+          </h2>
+          <div className="space-y-6">
+            {experiences.map((exp, idx) => (
+              <div key={idx} className="bg-white bg-opacity-80 backdrop-blur-sm p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all border-l-4 border-amber-700">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900">{exp.title}</h3>
+                    <p className="text-lg text-amber-700 font-medium">{exp.company}</p>
+                  </div>
+                  <span className="text-amber-600 font-medium mt-2 md:mt-0">{exp.period}</span>
+                </div>
+                <p className="text-gray-600 mb-2">{exp.location}</p>
+                <p className="text-gray-700">{exp.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Formation & Certifications */}
+      <section className="py-20 px-4 bg-gradient-to-r from-stone-100 to-amber-100">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium">FONDATION ACADÉMIQUE</span>
+            <h2 className="text-4xl font-bold text-gray-900 mt-4">Formation & Certifications</h2>
+            <p className="text-gray-600 mt-4">Développer l'expertise grâce à une formation académique rigoureuse et un développement professionnel continu</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-2xl">
+                  🎓
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900">Diplômes Universitaires</h3>
+              </div>
+
+              <div className="space-y-6">
+                <div className="bg-white bg-opacity-80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-blue-600">
+                  <div className="flex justify-between items-start mb-3">
+                    <h4 className="text-xl font-bold text-gray-900">Licence en Business Computing</h4>
+                    <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs">2023 - 2026</span>
+                  </div>
+                  <p className="text-blue-600 font-semibold mb-3 flex items-center gap-2">
+                    <GraduationCap size={18} />
+                    Esprit School of Business, Tunisie
+                  </p>
+                  <p className="text-sm text-gray-700 mb-2">• Spécialisation : Business Information Systems</p>
+                  <p className="text-sm text-gray-700">• Cours Pertinents : Gestion de Bases de Données, Analyse de Données, Développement Web Full-Stack, Intelligence Artificielle, Blockchain & Cybersécurité, Modélisation de Processus Métier</p>
+                </div>
+
+                <div className="bg-white bg-opacity-80 backdrop-blur-sm p-6 rounded-xl border-l-4 border-blue-600">
+                  <div className="flex justify-between items-start mb-3">
+                    <h4 className="text-xl font-bold text-gray-900">Baccalauréat - Sciences Expérimentales</h4>
+                    <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs">2018 - 2022</span>
+                  </div>
+                  <p className="text-blue-600 font-semibold mb-3 flex items-center gap-2">
+                    <GraduationCap size={18} />
+                    Lycée Oued Ellil, Tunisie
+                  </p>
+                  <p className="text-sm text-gray-700 mb-2">• Formation scientifique rigoureuse</p>
+                  <p className="text-sm text-gray-700">• Base solide en mathématiques et sciences</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center text-white text-2xl">
+                  🏅
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900">Certifications Professionnelles</h3>
+              </div>
+
+              <p className="text-sm text-gray-600 italic mb-6">Survolez pour voir les certificats</p>
+
+              <div className="grid grid-cols-3 gap-4">
+                {certifications.map((cert, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => setSelectedCert(cert)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-xl text-center cursor-pointer transition-all hover:scale-105 shadow-lg"
+                  >
+                    <Award size={24} className="mx-auto mb-2" />
+                    <p className="text-xs font-medium">{cert.title}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Engagement Associatif */}
+      <section className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium">AU-DELÀ DE L'ACADÉMIQUE</span>
+            <h2 className="text-4xl font-bold text-gray-900 mt-4">Engagement Associatif & Leadership</h2>
+            <p className="text-gray-600 mt-4">Développement personnel et professionnel à travers l'engagement associatif et le leadership communautaire</p>
+          </div>
+
+          <div className="relative">
+            <div className="absolute left-8 top-0 bottom-0 w-1 bg-blue-600 hidden md:block"></div>
+            
+            <div className="space-y-8">
+              {associations.map((assoc, idx) => (
+                <div key={idx} className="flex gap-6">
+                  <div className="hidden md:flex flex-col items-center">
+                    <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-2xl">
+                      {assoc.icon}
+                    </div>
+                  </div>
+                  <div className="flex-1 bg-white bg-opacity-80 backdrop-blur-sm p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all border-l-4 border-blue-600">
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                      <div>
+                        <h3 className="text-2xl font-bold text-gray-900 mb-2">{assoc.title}</h3>
+                        <p className="text-blue-600 font-semibold">{assoc.role}</p>
+                      </div>
+                      <span className="text-gray-600 font-medium mt-2 md:mt-0">{assoc.period}</span>
+                    </div>
+                    <p className="text-gray-700 mb-4">{assoc.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {assoc.tags.map((tag, i) => (
+                        <span key={i} className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-12 bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-2xl shadow-lg">
+            <div className="grid md:grid-cols-3 gap-6 text-center">
+              <div>
+                <div className="text-4xl font-bold text-blue-600 mb-2">4+</div>
+                <p className="text-gray-700">Organisations</p>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-blue-600 mb-2">3 Ans</div>
+                <p className="text-gray-700">d'Engagement</p>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-blue-600 mb-2">Multiple</div>
+                <p className="text-gray-700">Rôles de Leadership</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-20 px-4 bg-gradient-to-br from-blue-900 to-blue-700 text-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold mb-6">Créons Quelque Chose d'Extraordinaire Ensemble</h2>
+              <p className="text-lg mb-6 text-blue-100">
+                Je recherche activement des opportunités où je peux mettre à profit mes compétences techniques et mon sens des affaires pour créer un impact significatif. Que ce soit un stage, un poste de débutant ou un projet collaboratif, je suis enthousiaste à l'idée d'apporter des perspectives nouvelles et mon dévouement à votre équipe.
+              </p>
+              
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-3 text-green-300">
+                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                  <span>Disponible pour des opportunités immédiates</span>
+                </div>
+                <div className="flex items-center gap-3 text-blue-200">
+                  <span>✓</span>
+                  <span>Ouvert à la relocalisation et au travail à distance</span>
+                </div>
+                <div className="flex items-center gap-3 text-blue-200">
+                  <span>✓</span>
+                  <span>Passionné par l'apprentissage continu</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white bg-opacity-10 backdrop-blur-lg p-8 rounded-2xl">
+              <h3 className="text-2xl font-bold mb-6 text-center">Entrer en Contact</h3>
+              
+              <div className="space-y-4">
+                <a href="mailto:asma.benour@outlook.fr" className="flex items-center gap-4 bg-blue-600 hover:bg-blue-500 p-4 rounded-xl transition-all">
+                  <Mail size={24} />
+                  <div>
+                    <p className="text-sm text-blue-200">Email</p>
+                    <p className="font-semibold">asma.benour@outlook.fr</p>
+                  </div>
+                </a>
+
+                <a href="tel:+21658372581" className="flex items-center gap-4 bg-green-600 hover:bg-green-500 p-4 rounded-xl transition-all">
+                  <Phone size={24} />
+                  <div>
+                    <p className="text-sm text-green-200">Téléphone</p>
+                    <p className="font-semibold">+216 58372581</p>
+                  </div>
+                </a>
+
+                <a href="https://linkedin.com/in/asma-bennour" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 bg-blue-700 hover:bg-blue-600 p-4 rounded-xl transition-all">
+                  <Linkedin size={24} />
+                  <div>
+                    <p className="text-sm text-blue-200">LinkedIn</p>
+                    <p className="font-semibold">linkedin.com/in/asma-bennour</p>
+                  </div>
+                </a>
+
+                <a href="https://github.com/asma-bennour" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 bg-gray-800 hover:bg-gray-700 p-4 rounded-xl transition-all">
+                  <Github size={24} />
+                  <div>
+                    <p className="text-sm text-gray-300">GitHub</p>
+                    <p className="font-semibold">github.com/asma-bennour</p>
+                  </div>
+                </a>
+              </div>
+
+              <div className="mt-6 flex gap-4">
+                <button className="flex-1 bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-xl font-semibold transition-all flex items-center justify-center gap-2">
+                  <Send size={20} />
+                  Envoyer un Message
+                </button>
+                <button className="flex-1 border-2 border-white hover:bg-white hover:text-blue-900 text-white px-6 py-3 rounded-xl font-semibold transition-all flex items-center justify-center gap-2">
+                  <Download size={20} />
+                  Télécharger le CV
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-300 py-8 text-center">
+        <p>&copy; 2025 Asma Bennour. Tous droits réservés.</p>
+        <p className="text-sm mt-2">Conçu avec passion pour créer un impact positif</p>
+      </footer>
+
+      {/* Certification Modal */}
+      {selectedCert && (
+        <Modal onClose={() => setSelectedCert(null)}>
+          <div className="p-8">
+            <img src={selectedCert.image} alt={selectedCert.title} className="w-full h-96 object-cover rounded-lg mb-6 shadow-lg" />
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">{selectedCert.title}</h3>
+            <p className="text-lg text-amber-700 font-medium mb-6">{selectedCert.description}</p>
+            <div className="bg-amber-100 p-6 rounded-lg">
+              <p className="text-gray-800">
+                <Award className="inline mr-2 text-amber-700" size={20} />
+                Cette certification atteste de mes compétences et de mon engagement dans mon développement professionnel continu.
+              </p>
+            </div>
+          </div>
+        </Modal>
+      )}
+
+      {/* Project Modal */}
+      {selectedProject && (
+        <Modal onClose={() => setSelectedProject(null)}>
+          <div className="p-8">
+            <div className="mb-6">
+              <h3 className="text-3xl font-bold text-gray-900 mb-3">{selectedProject.title}</h3>
+              {selectedProject.badge && (
+                <span className="inline-block bg-yellow-600 text-white px-4 py-2 rounded-full text-sm font-medium">
+                  🏆 {selectedProject.badge}
+                </span>
+              )}
+            </div>
+
+            <div className="mb-6">
+              <h4 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                <span>🎯</span> Contexte & Défi
+              </h4>
+              <p className="text-gray-700 leading-relaxed">{selectedProject.description}</p>
+            </div>
+
+            <div className="mb-6">
+              <h4 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                <span>👤</span> Mon Rôle
+              </h4>
+              <p className="text-gray-700 leading-relaxed">{selectedProject.role}</p>
+            </div>
+
+            <div className="mb-6">
+              <h4 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                <span>🔧</span> Fonctionnalités Clés
+              </h4>
+              <ul className="space-y-2">
+                {selectedProject.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-gray-700">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mb-6">
+              <h4 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                <span>💻</span> Stack Technique
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {selectedProject.technologies.map((tech, idx) => (
+                  <span key={idx} className="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl">
+              <h4 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span>📊</span> Résultats & Reconnaissance
+              </h4>
+              <div className="grid md:grid-cols-2 gap-4">
+                {selectedProject.results.map((result, idx) => (
+                  <div key={idx} className="bg-white p-4 rounded-lg shadow">
+                    <div className="text-2xl font-bold text-blue-600 mb-1">{result.label}</div>
+                    <p className="text-sm text-gray-700">{result.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-6 p-4 bg-amber-100 rounded-lg border-l-4 border-amber-600">
+              <p className="text-gray-800">
+                <strong>Impact:</strong> Ce projet démontre ma capacité à travailler en équipe, à gérer des projets complexes et à créer des solutions qui répondent aux besoins réels des utilisateurs.
+              </p>
+            </div>
+          </div>
+        </Modal>
+      )}
+    </div>
+  );
+};
+
+export default Portfolio;

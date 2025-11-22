@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asma Bennour - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #3d5a5c;
+            --secondary: #91b3c0;
+            --accent: #b8bfae;
+            --light: #f5f5f5;
+            --dark: #2a2a2a;
+            --brown: #8b5e3c;
+            --beige: #e9d4bd;
+            --sand: #e6d9c9;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        nav.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        /* Hero Section Amélioré */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--beige) 0%, var(--sand) 50%, var(--light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            opacity: 0.1;
+            top: -250px;
+            right: -250px;
+            animation: float 20s ease-in-out infinite;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.1;
+            bottom: -200px;
+            left: -200px;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+        .hero-content {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-text h1 {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            opacity: 0;
+            animation: slideInLeft 1s ease-out 0.2s forwards;
+        }
+        .hero-text .subtitle {
+            font-size: 1.8rem;
+            color: var(--brown);
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: slideInLeft 1s ease-out 0.4s forwards;
+        }
+        .hero-text .tagline {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 2rem;
+            font-style: italic;
+            opacity: 0;
+            animation: slideInLeft 1s ease-out 0.6s forwards;
+        }
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: slideInLeft 1s ease-out 0.8s forwards;
+        }
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(61, 90, 92, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(61, 90, 92, 0.4);
+        }
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .hero-image {
+            position: relative;
+            opacity: 0;
+            animation: slideInRight 1s ease-out 0.4s forwards;
+        }
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .image-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+        }
+        .image-container::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.2; }
+        }
+        .profile-img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 10px solid white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: transform 0.5s ease;
+        }
+        .profile-img:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+        /* Section À Propos Séparée */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        h2.visible {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border-radius: 2px;
+        }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .value-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        .value-card.visible {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        .value-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            background: var(--beige);
+            transition: all 0.5s ease;
+        }
+        .value-card:hover .value-icon {
+            transform: rotateY(360deg) scale(1.1);
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+        /* Timeline Améliorée */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 2rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--secondary), var(--primary));
+            border-radius: 2px;
+        }
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-100px);
+        }
+        .timeline-item.visible {
+            animation: slideInTimeline 0.8s ease forwards;
+        }
+        @keyframes slideInTimeline {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .timeline-item:nth-child(even) {
+            transform: translateX(100px);
+        }
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+            margin-right: calc(50% + 3rem);
+        }
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: auto;
+            margin-left: calc(50% + 3rem);
+        }
+        .timeline-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            transition: all 0.3s ease;
+            width: calc(50% - 3rem);
+        }
+        .timeline-content:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 0 0 5px var(--secondary);
+            z-index: 10;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 0 5px var(--secondary), 0 0 0 10px transparent; }
+            50% { box-shadow: 0 0 0 5px var(--secondary), 0 0 0 15px rgba(145, 179, 192, 0.3); }
+        }
+        .timeline-date {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        /* Compétences Techniques Améliorées */
+        .skills-container {
+            background: white;
+            padding: 4rem 2rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            margin: 3rem 0;
+        }
+        .skills-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .skill-tab {
+            padding: 1rem 2rem;
+            background: var(--beige);
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        .skill-tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            transform: scale(1.05);
+        }
+        .skill-tab:hover {
+            transform: translateY(-3px);
+        }
+        .skill-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .skill-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tech-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .tech-skill-item {
+            background: linear-gradient(135deg, var(--beige), var(--sand));
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .tech-skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+        }
+        .tech-skill-item:hover::before {
+            left: 100%;
+        }
+        .tech-skill-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .tech-skill-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .tech-skill-item .name {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+        /* Langues avec style circulaire */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        .language-item {
+            text-align: center;
+        }
+        .language-circle {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary) 0deg, var(--primary) var(--progress), var(--beige) var(--progress), var(--beige) 360deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        .language-circle:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+        .language-circle::before {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+        }
+        .language-circle span {
+            position: relative;
+            z-index: 1;
+            font-size: 3rem;
+        }
+        /* Projets Améliorés */
+        .projects-grid {
+            display: grid;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        .project-card {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        .project-card.visible {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.2);
+        }
+        .project-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--beige), var(--sand));
+            min-height: 350px;
+        }
+        .project-images img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .project-images img:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+        .project-info {
+            padding: 3rem;
+        }
+        .project-number {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--beige);
+            line-height: 1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--beige), var(--sand));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .project-info h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin: 1.5rem 0;
+        }
+        .tag {
+            padding: 0.7rem 1.3rem;
+            background: var(--beige);
+            border-radius: 25px;
+            font-size: 0.95rem;
+            color: var(--brown);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .tag:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            transform: translateY(-3px);
+        }
+        /* Certifications Masonry Grid */
+        .certifications-masonry {
+            column-count: 3;
+            column-gap: 2rem;
+            margin: 3rem auto;
+            max-width: 1400px;
+        }
+        .cert-card {
+            break-inside: avoid;
+            margin-bottom: 2rem;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        .cert-card:nth-child(1) { animation-delay: 0.1s; }
+        .cert-card:nth-child(2) { animation-delay: 0.2s; }
+        .cert-card:nth-child(3) { animation-delay: 0.3s; }
+        .cert-card:nth-child(4) { animation-delay: 0.4s; }
+        .cert-card:nth-child(5) { animation-delay: 0.5s; }
+        .cert-card:nth-child(6) { animation-delay: 0.6s; }
+        .cert-card:nth-child(7) { animation-delay: 0.7s; }
+        .cert-card:nth-child(8) { animation-delay: 0.8s; }
+        .cert-card:nth-child(9) { animation-delay: 0.9s; }
+        .cert-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        .cert-card-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .cert-card:hover .cert-card-image {
+            transform: scale(1.05);
+        }
+        .cert-card-content {
+            padding: 1.5rem;
+        }
+        .cert-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .cert-card-content h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+        .cert-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+        .cert-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--dark);
+        }
+        .cert-meta-item strong {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        .cert-description {
+            color: var(--dark);
+            line-height: 1.6;
+            margin-top: 1rem;
+        }
+        .cert-skills {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--beige);
+        }
+        .cert-skills ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 0 0;
+        }
+        .cert-skills li {
+            padding: 0.4rem 0;
+            color: var(--dark);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .cert-skills li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        @media (max-width: 1200px) {
+            .certifications-masonry {
+                column-count: 2;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .certifications-masonry {
+                column-count: 1;
+            }
+        }
+        
+        .engagement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .engagement-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .engagement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        .engagement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        .engagement-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .engagement-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        .engagement-gallery {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 1rem;
+        }
+        .engagement-gallery::-webkit-scrollbar {
+            height: 10px;
+        }
+        .engagement-gallery::-webkit-scrollbar-track {
+            background: var(--beige);
+            border-radius: 10px;
+        }
+        .engagement-gallery::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+        }
+        .engagement-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .engagement-photo:hover {
+            transform: scale(1.08) translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+        }
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .image-container {
+                width: 300px;
+                height: 300px;
+            }
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            .timeline::before {
+                left: 30px;
+            }
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 60px;
+                margin-right: 0;
+                width: calc(100% - 60px);
+            }
+            .timeline-dot {
+                left: 30px;
+            }
+            .project-images {
+                grid-template-columns: 1fr;
+            }
+            .project-images img {
+                height: 200px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .engagement-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">Asma Bennour</div>
+            <ul class="nav-links">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#formation">Formation</a></li>
+                <li><a href="#skills">Compétences</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#engagement">Engagement</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Asma Bennour</h1>
+                <p class="subtitle">Étudiante en Business Computing</p>
+                <p class="tagline">Parce que derrière chaque donnée se cache une opportunité à saisir.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">Découvrir mes projets</a>
+                    <a href="#contact" class="btn btn-secondary">Me contacter</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-container">
+                    <img src="./2025_09_28_16_54_IMG_3961.PNG" alt="Asma Bennour" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="about">
+        <h2>À propos</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">💡</div>
+                <h3>Curiosité</h3>
+                <p>Passionnée par l'apprentissage continu et l'exploration de nouvelles technologies</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🏆</div>
+                <h3>Orientée Défis</h3>
+                <p>Stimulée par les challenges techniques et la résolution de problèmes complexes</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🚀</div>
+                <h3>Impact Concret</h3>
+                <p>Focus sur la création de solutions qui génèrent des résultats mesurables</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">👥</div>
+                <h3>Esprit d'Équipe</h3>
+                <p>Collaboration efficace et communication transparente</p>
+            </div>
+        </div>
+    </section>
+    <section id="formation">
+        <h2>Parcours Académique</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">2023 - Présent</span>
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Licence en Business Computing - Spécialité BISS</h3>
+                    <p style="font-weight: 600; color: var(--secondary); margin-bottom: 0.5rem;">ESPRIT School of Business</p>
+                    <p>Formation spécialisée en Business Intelligence et Systèmes d'Information, combinant compétences techniques et vision business pour la transformation digitale des entreprises.</p>
+                    <p style="margin-top: 1rem;"><strong>Domaines d'expertise :</strong></p>
+                    <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                        <li>Business Intelligence & Analytics</li>
+                        <li>Systèmes d'Information</li>
+                        <li>Développement Web & Mobile</li>
+                        <li>Intelligence Artificielle appliquée</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">2023</span>
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Baccalauréat Mathématiques</h3>
+                    <p style="font-weight: 600; color: var(--secondary); margin-bottom: 0.5rem;">Lycée Menzah 6</p>
+                    <p>Formation scientifique solide avec spécialisation en mathématiques, développant des compétences en raisonnement logique, analyse et résolution de problèmes complexes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="skills">
+        <h2>Mes Compétences</h2>
+        <div class="skills-container">
+            <div class="skills-tabs">
+                <button class="skill-tab active" onclick="showSkillTab('technical')">💻 Techniques</button>
+                <button class="skill-tab" onclick="showSkillTab('behavioral')">🤝 Comportementales</button>
+                <button class="skill-tab" onclick="showSkillTab('languages')">🌍 Langues</button>
+            </div>
+            <div id="technical" class="skill-content active">
+                <h3 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Compétences Techniques</h3>
+                
+                <h4 style="color: var(--secondary); margin: 2rem 0 1rem;">Langages de Programmation</h4>
+                <div class="tech-skills-grid">
+                    <div class="tech-skill-item">
+                        <div class="icon">🐍</div>
+                        <div class="name">Python</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">☕</div>
+                        <div class="name">Java</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">💎</div>
+                        <div class="name">C#</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">📜</div>
+                        <div class="name">JavaScript</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">🐘</div>
+                        <div class="name">PHP</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">🌐</div>
+                        <div class="name">HTML</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">🎨</div>
+                        <div class="name">CSS</div>
+                    </div>
+                </div>
+                <h4 style="color: var(--secondary); margin: 2rem 0 1rem;">Frameworks & Technologies</h4>
+                <div class="tech-skills-grid">
+                    <div class="tech-skill-item">
+                        <div class="icon">🍃</div>
+                        <div class="name">Spring Boot</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">🅰️</div>
+                        <div class="name">Angular</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">🤖</div>
+                        <div class="name">Android Studio</div>
+                    </div>
+                </div>
+                <h4 style="color: var(--secondary); margin: 2rem 0 1rem;">Intelligence Artificielle</h4>
+                <div class="tech-skills-grid">
+                    <div class="tech-skill-item">
+                        <div class="icon">🧠</div>
+                        <div class="name">NVIDIA Scapy</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">🔍</div>
+                        <div class="name">Détection d'anomalies</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">📊</div>
+                        <div class="name">ML Supervisé</div>
+                    </div>
+                </div>
+                <h4 style="color: var(--secondary); margin: 2rem 0 1rem;">Bases de Données</h4>
+                <div class="tech-skills-grid">
+                    <div class="tech-skill-item">
+                        <div class="icon">🗄️</div>
+                        <div class="name">MySQL</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">💾</div>
+                        <div class="name">phpMyAdmin</div>
+                    </div>
+                </div>
+                <h4 style="color: var(--secondary); margin: 2rem 0 1rem;">Blockchain & DLT</h4>
+                <div class="tech-skills-grid">
+                    <div class="tech-skill-item">
+                        <div class="icon">⛓️</div>
+                        <div class="name">Hedera Hashgraph</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">📝</div>
+                        <div class="name">Smart Contracts</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">🔐</div>
+                        <div class="name">DApps</div>
+                    </div>
+                </div>
+                <h4 style="color: var(--secondary); margin: 2rem 0 1rem;">Outils</h4>
+                <div class="tech-skills-grid">
+                    <div class="tech-skill-item">
+                        <div class="icon">🎨</div>
+                        <div class="name">Figma</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">✨</div>
+                        <div class="name">Canva</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">🐧</div>
+                        <div class="name">Linux</div>
+                    </div>
+                    <div class="tech-skill-item">
+                        <div class="icon">🔒</div>
+                        <div class="name">Kali</div>
+                    </div>
+                </div>
+            </div>
+            <div id="behavioral" class="skill-content">
+                <h3 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Compétences Comportementales</h3>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">🤝</div>
+                        <h3>Travail d'Équipe</h3>
+                        <p>Excellence dans la collaboration, capacité à fédérer les équipes autour d'objectifs communs</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">📋</div>
+                        <h3>Gestion de Projet</h3>
+                        <p>Planification stratégique et suivi rigoureux des échéances</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">💬</div>
+                        <h3>Communication</h3>
+                        <p>Expression claire des idées complexes et écoute active</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🧠</div>
+                        <h3>Pensée Analytique</h3>
+                        <p>Analyse de situations complexes et solutions innovantes</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🎯</div>
+                        <h3>Leadership</h3>
+                        <p>Prise d'initiative et capacité à inspirer les autres</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🔄</div>
+                        <h3>Adaptabilité</h3>
+                        <p>Flexibilité face au changement et apprentissage rapide</p>
+                    </div>
+                </div>
+            </div>
+            <div id="languages" class="skill-content">
+                <h3 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Langues</h3>
+                <div class="languages-grid">
+                    <div class="language-item">
+                        <div class="language-circle" style="--progress: 360deg;">
+                            <span>🇹🇳</span>
+                        </div>
+                        <h3>Arabe</h3>
+                        <p style="color: var(--secondary); font-weight: 600;">Langue maternelle</p>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-circle" style="--progress: 342deg;">
+                            <span>🇫🇷</span>
+                        </div>
+                        <h3>Français</h3>
+                        <p style="color: var(--secondary); font-weight: 600;">Courant (95%)</p>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-circle" style="--progress: 324deg;">
+                            <span>🇬🇧</span>
+                        </div>
+                        <h3>Anglais</h3>
+                        <p style="color: var(--secondary); font-weight: 600;">Courant (90%)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="projects">
+        <h2>Projets Réalisés</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-images">
+                    <img src="./Capture d'écran 2025-11-05 200814.png" alt="Projet 1 - Interface">
+                    <img src="./Capture d'écran 2025-11-05 200805.png" alt="Projet 1 - Dashboard">
+                    <img src="./Capture d'écran 2025-11-05 200755.png" alt="Projet 1 - Fonctionnalités">
+                </div>
+                <div class="project-info">
+                    <div class="project-number">01</div>
+                    <h3>Site Web de Prise de Rendez-vous</h3>
+                    <div class="project-tags">
+                        <span class="tag">🏆 1er Prix</span>
+                        <span class="tag">PHP</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    <p class="project-description">
+                        Développement d'une plateforme web complète pour digitaliser la prise de rendez-vous médicaux à l'Esprit School of Business. Le projet a remporté le 1er prix au Bal des Projets ESPRIT 2025.
+                    </p>
+                    <ul class="project-features">
+                        <li>Système multi-rôles (Étudiants, Médecins, Admins)</li>
+                        <li>Authentification sécurisée et gestion des sessions</li>
+                        <li>Calendrier dynamique interactif</li>
+                        <li>Notifications en temps réel</li>
+                        <li>Interface responsive et intuitive</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-images">
+                    <img src="./Capture d'écran 2025-11-08 185104.png" alt="Projet 2 - IA">
+                    <img src="./Capture d'écran 2025-11-08 185117.png" alt="Projet 2 - Blockchain">
+                    <img src="./Capture d'écran 2025-11-08 185127.png" alt="Projet 2 - Dashboard">
+                </div>
+                <div class="project-info">
+                    <div class="project-number">02</div>
+                    <h3>Assistant IA FinTech</h3>
+                    <div class="project-tags">
+                        <span class="tag">IA</span>
+                        <span class="tag">Blockchain</span>
+                        <span class="tag">Cybersécurité</span>
+                        <span class="tag">Python</span>
+                    </div>
+                    <p class="project-description">
+                        Prototype innovant combinant intelligence artificielle, blockchain et cybersécurité pour la gestion sécurisée de patrimoine financier multi-actifs.
+                    </p>
+                    <ul class="project-features">
+                        <li>Recommandations personnalisées par IA</li>
+                        <li>Intégration de solutions FinTech modernes</li>
+                        <li>Protocoles de cybersécurité avancés</li>
+                        <li>Traçabilité blockchain des transactions</li>
+                        <li>Architecture multi-couches sécurisée</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+                    
+    </section>
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <div class="certifications-masonry">
+            <!-- Certification 1: Hedera Hashgraph -->
+            <div class="cert-card">
+                <img src="./Capture d'écran 2025-11-04 184119.png" alt="Certification Hashgraph" class="cert-card-image">
+                <div class="cert-card-content">
+                    <span class="cert-badge">🔗 Blockchain</span>
+                    <h3>Hedera Hashgraph Developer Course</h3>
+                    <div class="cert-meta">
+                        <div class="cert-meta-item">
+                            <strong>🏢 Organisme:</strong> Hedera Hashgraph
+                        </div>
+                        <div class="cert-meta-item">
+                            <strong>📅 Date:</strong> 19 octobre 2025
+                        </div>
+                    </div>
+                    <p class="cert-description">
+                        Expertise en technologie de registre distribué (DLT), développement de smart contracts et applications décentralisées.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Certification 2: Premier Prix -->
+            <div class="cert-card">
+                <img src="./Capture d'écran 2025-11-04 184152.png" alt="Premier Prix" class="cert-card-image">
+                <div class="cert-card-content">
+                    <span class="cert-badge">🏆 Récompense</span>
+                    <h3>Premier Prix - Bal des Projets 2025</h3>
+                    <div class="cert-meta">
+                        <div class="cert-meta-item">
+                            <strong>🏢 Organisme:</strong> ESPRIT School of Business
+                        </div>
+                        <div class="cert-meta-item">
+                            <strong>📅 Date:</strong> 10 juin 2025
+                        </div>
+                    </div>
+                    <p class="cert-description">
+                        1er prix pour le développement d'une plateforme web innovante de prise de rendez-vous médicaux.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Certification 3: NVIDIA AI -->
+            <div class="cert-card">
+                <img src="./Capture d'écran 2025-11-04 184419.png" alt="NVIDIA AI" class="cert-card-image">
+                <div class="cert-card-content">
+                    <span class="cert-badge">🤖 Intelligence Artificielle</span>
+                    <h3>Applications of AI for Anomaly Detection</h3>
+                    <div class="cert-meta">
+                        <div class="cert-meta-item">
+                            <strong>🏢 Organisme:</strong> NVIDIA Deep Learning Institute
+                        </div>
+                        <div class="cert-meta-item">
+                            <strong>📅 Date:</strong> 18 octobre 2025
+                        </div>
+                    </div>
+                    <p class="cert-description">
+                        Formation approfondie en deep learning et intelligence artificielle avec focus sur la détection d'anomalies.
+                    </p>
+                    <div class="cert-skills">
+                        <strong>Compétences acquises:</strong>
+                        <ul>
+                            <li>Détection d'anomalies avec IA</li>
+                            <li>Apprentissage supervisé et non supervisé</li>
+                            <li>Optimisation de modèles de ML</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certification 4: Data Strategy -->
+            <div class="cert-card">
+                <img src="./Capture d'écran 2025-11-04 184233.png" alt="Data Strategy" class="cert-card-image">
+                <div class="cert-card-content">
+                    <span class="cert-badge">📊 Data Science</span>
+                    <h3>Data Strategy</h3>
+                    <div class="cert-meta">
+                        <div class="cert-meta-item">
+                            <strong>🏢 Organisme:</strong> 365 DataScience
+                        </div>
+                        <div class="cert-meta-item">
+                            <strong>📅 Date:</strong> 13 novembre 2024
+                        </div>
+                    </div>
+                    <p class="cert-description">
+                        Formation complète en stratégie de données et transformation digitale.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Certification 5: Python -->
+            <div class="cert-card">
+                <img src="./Capture d'écran 2025-11-04 184244.png" alt="Python" class="cert-card-image">
+                <div class="cert-card-content">
+                    <span class="cert-badge">🐍 Programmation</span>
+                    <h3>Introduction to Python</h3>
+                    <div class="cert-meta">
+                        <div class="cert-meta-item">
+                            <strong>🏢 Organisme:</strong> 365 DataScience
+                        </div>
+                        <div class="cert-meta-item">
+                            <strong>📅 Date:</strong> 02 novembre 2024
+                        </div>
+                    </div>
+                    <p class="cert-description">
+                        Maîtrise des fondamentaux de Python pour l'analyse de données.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Certification 6: Honoris -->
+            <div class="cert-card">
+                <img src="./Capture d'écran 2025-11-04 184313.png" alt="Honoris Certificate" class="cert-card-image">
+                <div class="cert-card-content">
+                    <span class="cert-badge">🌍 Développement Durable</span>
+                    <h3>Honoris Sustainability, Work Ethics & Gender Equity Certificate</h3>
+                    <div class="cert-meta">
+                        <div class="cert-meta-item">
+                            <strong>🏢 Organisme:</strong> Honoris Online Academy
+                        </div>
+                        <div class="cert-meta-item">
+                            <strong>📅 Date:</strong> Juillet 2024
+                        </div>
+                    </div>
+                    <p class="cert-description">
+                        Programme dédié aux compétences les plus demandées pour l'avenir du travail en Afrique et au-delà.
+                    </p>
+                    <div class="cert-skills">
+                        <strong>Thèmes abordés:</strong>
+                        <ul>
+                            <li>Atténuation et adaptation au changement climatique</li>
+                            <li>Prise de décision éthique et gouvernance des données</li>
+                            <li>Innovation pour le développement durable et égalité des genres</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certification 7: Spring Boot -->
+            <div class="cert-card">
+                <img src="./Capture d'écran 2025-11-08 184636.png" alt="Spring Boot Certificate" class="cert-card-image">
+                <div class="cert-card-content">
+                    <span class="cert-badge">🍃 Backend Development</span>
+                    <h3>Back End Web Development with Spring Boot</h3>
+                    <div class="cert-meta">
+                        <div class="cert-meta-item">
+                            <strong>🏢 Organisme:</strong> The Bridge / 9antra
+                        </div>
+                        <div class="cert-meta-item">
+                            <strong>📅 Date:</strong> 22 août 2025
+                        </div>
+                    </div>
+                    <p class="cert-description">
+                        Formation intensive d'un mois en développement backend avec Spring Boot. Maîtrise des architectures microservices et des bonnes pratiques de développement.
+                    </p>
+                    <div class="cert-skills">
+                        <strong>Compétences acquises:</strong>
+                        <ul>
+                            <li>Architecture Spring Boot et API RESTful</li>
+                            <li>Sécurité et authentification</li>
+                            <li>Gestion des bases de données</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certification 8: Rotaract -->
+            <div class="cert-card">
+                <img src="./Capture d'écran 2025-11-08 184649.png" alt="Rotaract Certificate" class="cert-card-image">
+                <div class="cert-card-content">
+                    <span class="cert-badge">⭐ Engagement Social</span>
+                    <h3>Certificat de Mérite - Rotaract Tunis Belvédère</h3>
+                    <div class="cert-meta">
+                        <div class="cert-meta-item">
+                            <strong>🏢 Organisme:</strong> Rotaract Club Tunis Belvédère
+                        </div>
+                        <div class="cert-meta-item">
+                            <strong>📅 Période:</strong> Année rotarienne 2024/2025
+                        </div>
+                    </div>
+                    <p class="cert-description">
+                        Reconnaissance de mon dévouement remarquable en tant que membre au service d'autrui durant l'année rotarienne.
+                    </p>
+                    <div class="cert-skills">
+                        <strong>Actions réalisées:</strong>
+                        <ul>
+                            <li>Cheffe Intérêt Public</li>
+                            <li>Organisation de multiples actions caritatives</li>
+                            <li>Leadership dans les projets communautaires</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="engagement">
+        <h2>Engagement Associatif</h2>
+        <div class="engagement-grid">
+            <div class="engagement-card">
+                <div class="engagement-header">
+                    <div class="engagement-icon">🎯</div>
+                    <div>
+                        <h3>Cheffe Intérêt Public</h3>
+                        <p style="color: var(--secondary); font-weight: 600;">Rotaract Tunis Belvédère</p>
+                    </div>
+                </div>
+                <p>Coordination et développement d'actions humanitaires et environnementales pour améliorer la vie de notre communauté.</p>
+                <ul style="padding-left: 1.5rem; margin-top: 1rem;">
+                    <li>8+ campagnes humanitaires organisées</li>
+                    <li>50+ bénévoles mobilisés</li>
+                    <li>5 projets d'intérêt public majeurs</li>
+                </ul>
+            </div>
+            <div class="engagement-card">
+                <div class="engagement-header">
+                    <div class="engagement-icon">🌟</div>
+                    <div>
+                        <h3>Cheffe d'Action</h3>
+                        <p style="color: var(--secondary); font-weight: 600;">Koffet Romdhane 2025</p>
+                    </div>
+                </div>
+                <p>Organisation de Koffet Romdhane durant le Ramadan. Distribution de 53 couffins à 53 familles à Oued Ellil.</p>
+                <ul style="padding-left: 1.5rem; margin-top: 1rem;">
+                    <li>Stands de collecte multiples</li>
+                    <li>30+ bénévoles coordonnés</li>
+                    <li>Partenariats locaux établis</li>
+                </ul>
+            </div>
+            <div class="engagement-card">
+                <div class="engagement-header">
+                    <div class="engagement-icon">📚</div>
+                    <div>
+                        <h3>Action Rentrée Scolaire</h3>
+                        <p style="color: var(--secondary); font-weight: 600;">Mateur, Bizerte</p>
+                    </div>
+                </div>
+                <p>Campagne de rentrée scolaire solidaire pour soutenir 50 élèves issus de familles défavorisées.</p>
+                <ul style="padding-left: 1.5rem; margin-top: 1rem;">
+                    <li>50 élèves accompagnés</li>
+                    <li>Fournitures complètes distribuées</li>
+                    <li>Suivi personnalisé des besoins</li>
+                </ul>
+            </div>
+            <div class="engagement-card">
+                <div class="engagement-header">
+                    <div class="engagement-icon">❄️</div>
+                    <div>
+                        <h3>Action Hiver au Chaud</h3>
+                        <p style="color: var(--secondary); font-weight: 600;">Thala, Kasserine</p>
+                    </div>
+                </div>
+                <p>Grande action humanitaire d'hiver dans la région de Thala, Kasserine.</p>
+                <ul style="padding-left: 1.5rem; margin-top: 1rem;">
+                    <li>500 familles aidées</li>
+                    <li>Couvertures et vêtements distribués</li>
+                    <li>80+ bénévoles mobilisés</li>
+                </ul>
+            </div>
+        </div>
+        <div style="margin-top: 4rem;">
+            <h3 style="text-align: center; color: var(--primary); margin-bottom: 2rem; font-size: 2rem;">📸 Galerie des Actions</h3>
+            <div class="engagement-gallery" id="gallery">
+                <img src="Capture d'écran 2025-11-06 190349.png" alt="Action caritative 1" class="engagement-photo">
+                <img src="Capture d'écran 2025-11-06 190135.png" alt="Action caritative 2" class="engagement-photo">
+                <img src="Capture d'écran 2025-11-06 190123.png" alt="Action caritative 3" class="engagement-photo">
+                <img src="Capture d'écran 2025-11-06 185952.png" alt="Action caritative 4" class="engagement-photo">
+                <img src="Capture d'écran 2025-11-06 185939.png" alt="Action caritative 5" class="engagement-photo">
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Restons en Contact</h2>
+        <div class="contact-grid">
+            <a href="mailto:asma.benour@outlook.fr" class="contact-card">
+                <div class="contact-icon">📧</div>
+                <h3>Email</h3>
+                <p>asma.benour@outlook.fr</p>
+            </a>
+            
+            <a href="tel:+21658372581" class="contact-card">
+                <div class="contact-icon">📱</div>
+                <h3>Téléphone</h3>
+                <p>+216 58 372 581</p>
+            </a>
+            
+            <a href="https://linkedin.com/in/asma-bennour" target="_blank" class="contact-card">
+                <div class="contact-icon">💼</div>
+                <h3>LinkedIn</h3>
+                <p>asma-bennour</p>
+            </a>
+            
+            <a href="https://github.com/asma-bennour" target="_blank" class="contact-card">
+                <div class="contact-icon">💻</div>
+                <h3>GitHub</h3>
+                <p>asma-bennour</p>
+            </a>
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="./CV Curriculum Vitae Français Minimaliste Professionnel Blanc Beige (5).pdf" download class="btn btn-primary" style="font-size: 1.1rem; padding: 1.2rem 3rem;">
+                📄 Télécharger mon CV
+            </a>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Asma Bennour - Tous droits réservés</p>
+    </footer>
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('h2, .value-card, .timeline-item, .project-card').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Skill tabs
+        function showSkillTab(tabName) {
+            document.querySelectorAll('.skill-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.skill-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        // Lightbox for project images
+        document.querySelectorAll('.project-images img').forEach(img => {
+            img.addEventListener('click', () => {
+                const lightbox = document.createElement('div');
+                lightbox.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.9);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                    cursor: pointer;
+                    animation: fadeIn 0.3s ease;
+                `;
+                
+                const enlargedImg = document.createElement('img');
+                enlargedImg.src = img.src;
+                enlargedImg.style.cssText = `
+                    max-width: 90%;
+                    max-height: 90%;
+                    border-radius: 15px;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+                `;
+                
+                lightbox.appendChild(enlargedImg);
+                document.body.appendChild(lightbox);
+                
+                lightbox.addEventListener('click', () => {
+                    lightbox.remove();
+                });
+            });
+        });
+        
+        // Lightbox for engagement photos
+        document.querySelectorAll('.engagement-photo').forEach(photo => {
+            photo.addEventListener('click', () => {
+                const lightbox = document.createElement('div');
+                lightbox.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.95);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                    cursor: pointer;
+                    animation: fadeIn 0.3s ease;
+                `;
+                
+                const enlargedImg = document.createElement('img');
+                enlargedImg.src = photo.src;
+                enlargedImg.style.cssText = `
+                    max-width: 90%;
+                    max-height: 90%;
+                    border-radius: 15px;
+                    box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+                `;
+                
+                lightbox.appendChild(enlargedImg);
+                document.body.appendChild(lightbox);
+                
+                lightbox.addEventListener('click', () => {
+                    lightbox.remove();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
